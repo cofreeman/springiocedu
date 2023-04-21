@@ -1,4 +1,4 @@
-package exam3.exam1;
+package exam3;
 
 public interface Greeting {
 

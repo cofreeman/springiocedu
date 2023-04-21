@@ -1,31 +1,33 @@
-package exam3.exam1;
+package exam3;
 
 import java.time.LocalDateTime;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import sampleanno6.UserService;
 
 public class GreetingApp {
 
     public static void main(String[] args) {
         ApplicationContext factory
-            = new ClassPathXmlApplicationContext("exam1.xml");
-        LocalDateTime localDateTime = (LocalDateTime) factory.getBean("localDateTime");
+            = new ClassPathXmlApplicationContext("exam3.xml");
+        LocalDateTime localDateTime = factory.getBean("localDateTime",LocalDateTime.class);
         int hour = localDateTime.getHour();
+
         if (isWithinHours(hour, 6, 12)) {
-            Greeting morningGreeting = (Greeting) factory.getBean(
-                "morningGreeting");
-            morningGreeting.greet();
+            MorningGreetingImpl morningGreetingImpl = factory.getBean("morningGreetingImpl",
+                MorningGreetingImpl.class);
+            morningGreetingImpl.greet();
         } else if (isWithinHours(hour, 12, 17)) {
-            Greeting afternoonGreeting = (Greeting) factory.getBean(
-                "afternoonGreeting");
+            AfternoonGreetingImpl afternoonGreeting = factory.getBean("afternoonGreetingImpl",
+                AfternoonGreetingImpl.class);
             afternoonGreeting.greet();
         } else if (isWithinHours(hour, 17, 22)) {
-            Greeting eveningGreeting = (Greeting) factory.getBean(
-                "eveningGreeting");
+            EveningGreetingImpl eveningGreeting = factory.getBean("eveningGreetingImpl",
+                EveningGreetingImpl.class);
             eveningGreeting.greet();
         } else {
-            Greeting nightGreeting = (Greeting) factory.getBean(
-                "nightGreeting");
+            NightGreetingImpl nightGreeting = factory.getBean("nightGreetingImpl",
+                NightGreetingImpl.class);
             nightGreeting.greet();
         }
         ((ClassPathXmlApplicationContext) factory).close();

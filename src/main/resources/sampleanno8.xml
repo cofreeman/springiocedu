@@ -7,12 +7,10 @@
 
 <context:component-scan base-package="sampleanno8"/>
 
-<bean id="message1"  class="java.lang.String">
+<bean id="m"  class="java.lang.String">
 	<constructor-arg value="스프링 FW"/>
 </bean>
-<!--  
-<bean id="message2"  class="java.lang.String">
+<bean id="message"  class="java.lang.String">
 	<constructor-arg value="마이바티스 FW"/>
-</bean> 
---> 
+</bean>
 </beans>
